@@ -11,7 +11,13 @@ app.get('/', (req, res) => {
 
 app.post('/', (req, res) => {
     console.log(req.body);
-    res.send('Thank you for form submission!')
+    const { name, address } = req.body;
+    console.log(Boolean(name))
+    if(!name.trim()|| !address.trim()){
+        res.sendFile( __dirname + '/error.html');
+    }else{
+        res.send('Thank you for form submission!')
+    }
 })
 
 const PORT = process.env.PORT || 4400;
