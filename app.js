@@ -24,7 +24,6 @@ app.get('/', (req, res) => {
 
 app.post('/', (req, res) => {
     
-    console.log(req.body);
     const { name, address } = req.body;
 
     if(!name.trim()|| !address.trim()){
@@ -36,8 +35,12 @@ app.post('/', (req, res) => {
             const user = new User({ name, address: doc._id})
             user.save()
             .then(() => res.send('<h1>Form submitted successfully</h1>'))
-        })
+        });
     }
+});
+
+app.get('/error', (req, res) => {
+    res.sendFile(__dirname + '/error.html')
 })
 
 const PORT = process.env.PORT || 4400;
