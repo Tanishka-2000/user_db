@@ -34,14 +34,10 @@ app.post('/', (req, res) => {
         .then( doc => {
             const user = new User({ name, address: doc._id})
             user.save()
-            .then(() => res.send('<h1>Form submitted successfully</h1>'))
+            .then(() => res.sendFile(__dirname + '/success.html'))
         });
     }
 });
-
-app.get('/error', (req, res) => {
-    res.sendFile(__dirname + '/error.html')
-})
 
 const PORT = process.env.PORT || 4400;
 app.listen(PORT, () => console.log('app listening on port ' + PORT));
