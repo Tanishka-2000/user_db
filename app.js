@@ -19,7 +19,7 @@ const Address = require('./models/Address');
 
 
 app.get('/', (req, res) => {
-    res.sendFile( __dirname + '/form.html');
+    res.sendFile( __dirname + '/views/form.html');
 });
 
 app.post('/', (req, res) => {
@@ -27,14 +27,14 @@ app.post('/', (req, res) => {
     const { name, address } = req.body;
 
     if(!name.trim()|| !address.trim()){
-        res.sendFile( __dirname + '/error.html');
+        res.sendFile( __dirname + '/views/error.html');
     }else{
         const addr = new Address({ address });
         addr.save()
         .then( doc => {
             const user = new User({ name, address: doc._id})
             user.save()
-            .then(() => res.sendFile(__dirname + '/success.html'))
+            .then(() => res.sendFile(__dirname + '/views/success.html'))
         });
     }
 });
