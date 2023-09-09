@@ -6,7 +6,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
 
 app.get('/', (req, res) => {
-    res.send('<h1>Hello from Express</h1>')
+    res.sendFile( __dirname + '/form.html');
 });
 
 const PORT = process.env.PORT || 4400;
